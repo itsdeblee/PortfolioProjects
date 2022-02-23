@@ -30,7 +30,6 @@ Order by 1,2
 --Countries with Highest Infection Rate compared to Population
 Select location, population, MAX(total_cases) as HighestInfectionCount, MAX((total_cases/Population))*100 as PercentPopulationInfected
 From Portfolio..CovidDeaths
-Where continent is not null
 Group by Location, Population
 Order by PercentPopulationInfected desc
 
