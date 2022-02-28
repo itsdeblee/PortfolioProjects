@@ -1,5 +1,4 @@
 -- Cleaning data in SQL Queries
-
 -- Standardize Date Format
 Select SaleDateConverted, CONVERT(Date, SaleDate) 
 From Portfolio.dbo.NashvilleHousing
