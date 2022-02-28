@@ -52,17 +52,6 @@ Order by 1,2
 
 
 -- Total Population vs Vaccinations
-Select dea.continent, dea.LOCATION, dea.date, dea.population, vac.new_vaccinations,
-SUM(vac.new_vaccinations) OVER (Partition by dea.location Order by dea.location, dea.date)
-as RollingPeopleVaccinated, (RollingPeopleVaccinated/Population)*100
-From Portfolio..CovidDeaths dea
-Join Portfolio..CovidVaccinations vac
-    On dea.location = vac.location
-    and dea.date = vac.date
-Where dea.continent is not null
-Order by 1,2,3
-
-
 -- Use CTE
 With PopvsVac (Continent, Location, Date, Population, New_Vaccinations, RollingPeopleVaccinated)
 as
@@ -105,15 +94,12 @@ From #PercentPopulationVaccinated
 
 -- Creating view to store data for later visualizations
 Create View PercentPopulationVaccinated as
-Select dea.continent, dea.LOCATION, dea.date, dea.population, vac.new_vaccinations,
-SUM(vac.new_vaccinations) OVER (Partition by dea.location Order by dea.location, dea.date)
-as RollingPeopleVaccinated, (RollingPeopleVaccinated/Population)*100
+Select dea.continent, dea.location, dea.date, dea.population, vac.new_vaccinations
+, SUM(CONVERT(int,vac.new_vaccinations)) OVER (Partition by dea.Location Order by dea.location, dea.Date) as RollingPeopleVaccinated
 From Portfolio..CovidDeaths dea
 Join Portfolio..CovidVaccinations vac
-    On dea.location = vac.location
-    and dea.date = vac.date
-Where dea.continent is not null
-Order by 1,2,3
+	On dea.location = vac.location
+	and dea.date = vac.date
+where dea.continent is not null
 
-Select *
-From PercentPopulationVaccinated
+
