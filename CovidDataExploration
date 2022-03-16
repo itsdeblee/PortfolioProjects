@@ -4,7 +4,6 @@ Where continent is not null
 Order by 1,2
 
 
--- Total Cases vs Total Deaths
 -- Likelihood of dying if you contract covid in your country
 Select location, date, total_cases, total_deaths, (total_deaths/total_cases)*100 as DeathPercentage
 From Portfolio..CovidDeaths
@@ -12,7 +11,6 @@ Where Location like '%states%'
 Order by 1,2
 
 
--- Total cases vs Population
 -- Percentage of population infected with covid
 Select location, date, population, total_cases, (total_cases/population)*100 as PercentPopulationInfected
 From Portfolio..CovidDeaths
@@ -52,8 +50,7 @@ Where Location like '%states%'
 Order by 1,2
 
 
--- Total Population vs Vaccinations
--- Use CTE
+-- Total Population vs Vaccinations / CTE
 With PopvsVac (Continent, Location, Date, Population, New_Vaccinations, RollingPeopleVaccinated)
 as
 (Select dea.continent, dea.LOCATION, dea.date, dea.population, vac.new_vaccinations,
