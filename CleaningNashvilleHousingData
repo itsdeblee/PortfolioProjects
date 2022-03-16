@@ -1,4 +1,3 @@
--- Cleaning data in SQL Queries
 -- Standardize Date Format
 SELECT SaleDateConverted, CONVERT(Date, SaleDate) 
 FROM Portfolio.dbo.NashvilleHousing
@@ -51,7 +50,6 @@ ADD PropertySplitCity Nvarchar(255);
 
 UPDATE Nashvillehousing
 SET PropertySplitCity = SUBSTRING(PropertyAddress, CHARINDEX(',', PropertyAddress) +1, LEN(PropertyAddress))
-
 
 SELECT
 PARSENAME(REPLACE(OwnerAddress, ',', '.') , 3)
@@ -112,7 +110,7 @@ SELECT *,
                     ) row_num    
 
 FROM Portfolio.dbo.NashvilleHousing
---Order by ParcelID
+-- Order by ParcelID
 )
 SELECT *
 FROM RowNumCTE
