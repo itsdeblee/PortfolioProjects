@@ -3,6 +3,7 @@ From Portfolio..CovidDeaths
 Where continent is not null
 Order by 1,2
 
+
 -- Total Cases vs Total Deaths
 -- Likelihood of dying if you contract covid in your country
 Select location, date, total_cases, total_deaths, (total_deaths/total_cases)*100 as DeathPercentage
@@ -101,5 +102,3 @@ Join Portfolio..CovidVaccinations vac
 	On dea.location = vac.location
 	and dea.date = vac.date
 where dea.continent is not null
-
-
