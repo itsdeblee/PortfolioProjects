@@ -31,9 +31,10 @@ library(palmerpenguins)
 
 You can also embed plots, for example:
 
-    ## Warning: Removed 2 rows containing missing values (`geom_point()`).
-
-![](Penguin-Plots_files/figure-gfm/pressure-1.png)<!-- -->
+```{r pressure, echo=FALSE}
+ggplot(data = penguins) +
+  geom_point(mapping = aes(x = flipper_length_mm, y = body_mass_g))
+```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to
 prevent printing of the R code that generated the plot.
